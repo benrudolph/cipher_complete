@@ -13,22 +13,22 @@ def cipher(words):
     print cipher_complete[key]
 
 # Finds duplicate letters and positions, returns array of tuples containing the positions of duplicate
-# letters. It also appends the length of the word because that is also needed to distinguish cipher complete
-# words
+# letters.
 def get_duplicates(word):
   positions = collections.defaultdict(lambda: [])
 
   for i in range(len(word)):
     positions[word[i]].append(i)
 
-  duplicates = [len(word)]
+  duplicates = []
   for key in positions:
-    if len(positions[key]) > 1:
-      duplicates.append(tuple(positions[key]))
+    duplicates.append(tuple(positions[key]))
 
+  if len(duplicates) > 1:
+    duplicates.sort()
   return tuple(duplicates)
 
 
 cipher(['python', 'java', 'ruby', 'lisp', 'dayo', 'lava', 'laaa', 'sixlet', 'javascript'])
-cipher(['aa', 'abc', 'bbde', 'abace', 'asdfds'])
+cipher(['aa', 'abc', 'bbde', 'abace', 'asdfds', 'abdedb'])
 cipher(['aacc', 'bbdd', 'ecce', 'dd', 'ee'])
